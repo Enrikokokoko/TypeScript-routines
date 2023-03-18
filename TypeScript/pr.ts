@@ -90,7 +90,7 @@ console.log(createPassword('Make', 22));
 
 type Person = {name: string, age: number, nickName: string };
 
-type User = Person & {rights: string}
+type Users = Person & {rights: string}
 
 let user: Person = {
     name: 'Mark',
@@ -98,7 +98,7 @@ let user: Person = {
     nickName: 'Mark was a good'
 };
 
-let admin: Person | User = {
+let admin: Person | Users = {
     name: 'Igor',
     age: 34,
     nickName: 'Standing over the devil',
@@ -112,3 +112,57 @@ let noone: Person & {getPass:() => string} = {
     getPass:() => "qwe"
 }
 
+
+class User {
+    name: string;
+    age: number;
+    nickName: string;
+
+    constructor(name: string, age: number, nickName: string){
+        this.name = name;
+        this.age = age;
+        this.nickName = nickName;
+    }
+}
+
+const smth = new User('Maks', 20, 'Vodila');
+
+console.log(smth);
+
+
+class Userr {
+    constructor(
+        public name: string,
+        public age: number,
+        public nickName: string,
+        public pass: number
+    ){}
+}
+
+const res = new Userr('Tor', 2000, 'God of thunder', 123)
+
+console.log(res);
+
+
+class Userprivate {
+
+    private age: number = 20;
+    constructor(public name:string){}
+ 
+    //method call
+    setAge(age: number){ 
+        this.age = age;
+    }
+    //property call
+    set myAge(age: number) {
+        this.age = age
+    }
+}
+
+const tt = new Userprivate('qwewqe')
+
+tt.setAge(24)
+console.log(tt);
+
+tt.myAge = 26
+console.log(tt);
