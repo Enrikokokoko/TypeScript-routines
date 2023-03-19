@@ -198,7 +198,7 @@ console.log(newuser);
 abstract class Admin {
     constructor(public name: string, public age: number) {}
     greet():void {
-        console.log(this.name);
+        console.log(this.name); 
     }
 
     abstract getPass(): string;
@@ -219,3 +219,30 @@ class Yaphets extends Admin {
 
 const yaphets = new Yaphets(30)
 console.log(yaphets.getPass());
+
+namespace Utils {
+    export const SECRET: string = '123321';
+    const PI: number = 3.14;
+
+    export const getPass = (name: string, age: number): string => `${name}${age}`;
+
+    export const isEMpty = <T>(data: T): boolean => !data;
+}
+
+const myPass = Utils.getPass('Mark', 23);
+console.log(myPass);
+
+
+const isSecret = Utils.isEMpty(Utils.SECRET);
+console.log(isSecret);
+
+//console.log(PI); gives an error because was called without export 
+
+// import{ PI} from "./pr";
+
+// const sss = PI
+
+// console.log(sss);
+
+
+
