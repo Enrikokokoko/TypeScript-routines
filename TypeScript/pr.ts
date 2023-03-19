@@ -166,3 +166,56 @@ console.log(tt);
 
 tt.myAge = 26
 console.log(tt);
+
+class Us {
+    
+    private nickName: string = '47'
+    static secret = 12345;
+    constructor(public name: string, public age: number){}
+
+    getPass():string{
+        return `${this.name}${Us.secret}`;
+    }
+}
+
+const s = new Us('Mitchel', 35)
+
+console.log(s.getPass());
+
+
+class NewUser extends Us {
+    name: string = 'New';
+
+    constructor(age: number) {
+        super(NewUser.name, age);
+    }
+}
+
+const max = new Us('Max', 21)
+const newuser = new NewUser(31)
+console.log(newuser);
+
+abstract class Admin {
+    constructor(public name: string, public age: number) {}
+    greet():void {
+        console.log(this.name);
+    }
+
+    abstract getPass(): string;
+}
+//can't create copy because of abstract class
+
+class Yaphets extends Admin {
+    name: string = 'Yaphets'
+    constructor(age: number) {
+        super(Yaphets.name, age);
+    }
+
+    getPass():string {
+        return `${this.age}${this.name}`;
+    }
+
+}
+
+const yaphets = new Yaphets(30)
+console.log(yaphets.getPass());
