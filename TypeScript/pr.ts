@@ -244,5 +244,72 @@ console.log(isSecret);
 
 // console.log(sss);
 
+interface UserI {
+    readonly name?: string,
+    age?: number,
+}
 
+const jane: UserI = {
+    name: 'Jane',
+}
 
+const met: UserI = {
+    age: 23
+} 
+
+//jane.name = 'qwe' property only for read 
+
+ interface UserIn {
+    name: string,
+    age: number,
+    [propName: string]: any;
+ }
+
+ const perUser: UserIn = {
+    name: 'Ricardo',
+    age: 20,
+    nickName: 'Symbol of America',
+    justTest: 'test'
+ }
+
+ console.log(perUser);
+
+ interface Pass extends UserIn{
+    getPass(): string,
+ }
+ 
+ class Yuser implements Pass{
+    name: string = 'Yuser';
+    age: number = 12;
+    nickName: string = "Cruser";
+
+    getPass() {
+        return `${this.name}${this.age}`;
+    }
+ }
+ const yuser = new Yuser()
+ console.log(yuser, yuser.getPass());
+ 
+
+ const getter = <T>(data: T): T => data;
+
+ console.log(getter('qwe').length);
+
+//  console.log(getter<number>(10).length);
+ 
+class UserGen <T, K> {
+    constructor(public name: T, public age: K) {}
+
+    public gerPass():string {
+        return `${this.name}${this.age}`
+    }
+}
+
+const strings = new UserGen('Kline', '24');
+console.log(strings, strings.gerPass());
+
+const numbers = new UserGen(123,321);
+console.log(numbers, numbers.gerPass());
+
+const mix = new UserGen('Kline', 21)
+console.log(mix, mix.gerPass());
